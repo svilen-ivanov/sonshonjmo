@@ -20,13 +20,13 @@ apply plugin: 'idea'
 apply plugin: 'com.github.ben-manes.versions'
 
 // group is the groupId
-group = 'com.buhtum.twr'
+group = 'com.buhtum.sonshonjmo'
 //the default artifactId is the project name, which is per default the directory name of the project
-version = '0.0.6-SNAPSHOT'
+version = '0.0.1-SNAPSHOT'
 
 description = """A bootstrap Java project with gradle, TestNG, Mockito, FEST-Assert 2 and Cobertura for Eclipse and Jenkins"""
 
-mainClassName = "com.buhtum.twr.Main"
+mainClassName = "com.buhtum.sonshonjmo.Main"
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -42,10 +42,9 @@ dependencies {
             'org.twitter4j:twitter4j-core:4.0.+',
             'org.twitter4j:twitter4j-stream:4.0.+',
             'joda-time:joda-time:2.9.+',
-            'net.sf.supercsv:super-csv-java8:2.4.0',
-            'net.sf.supercsv:super-csv-joda:2.4.0',
             'com.squareup.okhttp3:okhttp:3.2.0',
             'com.google.code.gson:gson:2.6.2',
+            'org.jsoup:jsoup:1.9.2',
     )
 
     testCompile(
