@@ -6,15 +6,14 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import twitter4j.Twitter;
-import twitter4j.TwitterException;
-import twitter4j.TwitterFactory;
+import twitter4j.*;
 import twitter4j.auth.AccessToken;
 import twitter4j.auth.RequestToken;
 
@@ -62,13 +61,45 @@ public class Main {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                try {
-                    twitter.updateStatus(buildTweet());
-                } catch (TwitterException | IOException e) {
-                    log.error("Failed to tweet", e);
-                }
+                tweet(twitter);
             }
         }, start.toDate(), TimeUnit.DAYS.toMillis(1));
+
+//        try {
+//            final String status = buildTweet();
+//            final Speaker speaker = new Speaker(System.getProperty("ivona"));
+//            File media = speaker.speak(status);
+//            final StatusUpdate statusUpdate = new StatusUpdate(status);
+//            statusUpdate.setMedia(media);
+//            twitter.updateStatus(status);
+//        } catch (Exception e) {
+//            log.error("Failed to tweet", e);
+//        }
+//        tweet(twitter);
+    }
+
+    private static void tweet(Twitter twitter) {
+        try {
+            final String status = buildTweet();
+            twitter.updateStatus(status);
+
+            Thread.sleep(TimeUnit.MINUTES.toMillis(1));
+
+            final Speaker speaker = new Speaker(System.getProperty("ivona"));
+            File ruMedia = speaker.speak(status, Language.RU);
+            File frMedia = speaker.speak(status, Language.FR);
+            final ClypitUploader clypitUploader = new ClypitUploader();
+            String ruUrl = clypitUploader.upload(ruMedia, "Sonshonjmo Russian " + DateTimeFormat.shortDate().print(DateTime.now()));
+            String frUrl = clypitUploader.upload(frMedia, "Sonshonjmo French " + DateTimeFormat.shortDate().print(DateTime.now()));
+            String audioTweet = "Нивото на река Дунав за " + DateTimeFormat.shortDate().print(DateTime.now()) + ":\n" +
+                    "• на руски → " + ruUrl + "\n" +
+                    "• на френски → " + frUrl;
+            log.debug(audioTweet);
+            twitter.updateStatus(audioTweet);
+
+        } catch (Exception e) {
+            log.error("Failed to tweet", e);
+        }
     }
 
     private static String buildTweet() throws IOException {

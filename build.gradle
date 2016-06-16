@@ -39,12 +39,20 @@ dependencies {
     compile(
             'com.google.guava:guava:19.0',
             'ch.qos.logback:logback-classic:1.1.3',
+            'org.slf4j:jcl-over-slf4j:1.7.7',
+            'org.slf4j:org.slf4-apij:1.7.7',
+            'org.slf4j:org.slf4j:1.7.7',
             'org.twitter4j:twitter4j-core:4.0.+',
             'org.twitter4j:twitter4j-stream:4.0.+',
             'joda-time:joda-time:2.9.+',
             'com.squareup.okhttp3:okhttp:3.2.0',
             'com.google.code.gson:gson:2.6.2',
             'org.jsoup:jsoup:1.9.2',
+            'com.ivona:ivona-speechcloud-sdk-java:1.0.0',
+            'org.apache.commons:commons-lang3:3.4',
+            'commons-io:commons-io:2.5',
+            'com.ibm.icu:icu4j:57.1',
+
     )
 
     testCompile(
