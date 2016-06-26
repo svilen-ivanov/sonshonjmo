@@ -8,6 +8,8 @@
     </appender>
 
     <logger name="twitter4j" level="INFO"/>
+    <logger name="com.amazonaws" level="INFO"/>
+    <logger name="org.apache.http" level="INFO"/>
 
     <root level="debug">
         <appender-ref ref="STDOUT"/>
