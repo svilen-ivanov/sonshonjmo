@@ -22,7 +22,7 @@ apply plugin: 'com.github.ben-manes.versions'
 // group is the groupId
 group = 'com.buhtum.sonshonjmo'
 //the default artifactId is the project name, which is per default the directory name of the project
-version = '0.0.1-SNAPSHOT'
+version = '0.0.2-SNAPSHOT'
 
 description = """A bootstrap Java project with gradle, TestNG, Mockito, FEST-Assert 2 and Cobertura for Eclipse and Jenkins"""
 
@@ -40,8 +40,7 @@ dependencies {
             'com.google.guava:guava:19.0',
             'ch.qos.logback:logback-classic:1.1.3',
             'org.slf4j:jcl-over-slf4j:1.7.7',
-            'org.slf4j:org.slf4-apij:1.7.7',
-            'org.slf4j:org.slf4j:1.7.7',
+            'org.slf4j:slf4j-api:1.7.7',
             'org.twitter4j:twitter4j-core:4.0.+',
             'org.twitter4j:twitter4j-stream:4.0.+',
             'joda-time:joda-time:2.9.+',
@@ -52,7 +51,6 @@ dependencies {
             'org.apache.commons:commons-lang3:3.4',
             'commons-io:commons-io:2.5',
             'com.ibm.icu:icu4j:57.1',
-
     )
 
     testCompile(

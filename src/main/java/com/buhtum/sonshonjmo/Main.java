@@ -56,7 +56,8 @@ public class Main {
         }
 
         Timer timer = new Timer();
-        final DateTime start = new DateTime().withTimeAtStartOfDay().plusDays(1).withHourOfDay(15);
+        DateTime start = new DateTime().withTimeAtStartOfDay().withHourOfDay(15);
+        if (DateTime.now().isAfter(start)) start = start.plusDays(1);
         log.info("Next update at: " + start);
         timer.schedule(new TimerTask() {
             @Override
